@@ -1,0 +1,38 @@
+# ── Dependencies ──
+node_modules/
+.pnp
+.pnp.js
+
+# ── Expo ──
+.expo/
+.expo-shared/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# ── Native builds ──
+ios/
+android/
+
+# ── Environment (never commit real credentials) ──
+.env
+.env.local
+.env.*.local
+
+# ── Logs ──
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.log
+
+# ── OS / editors ──
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
