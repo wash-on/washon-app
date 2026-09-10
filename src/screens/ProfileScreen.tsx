@@ -14,7 +14,7 @@ type Nav = NativeStackNavigationProp<RootStackParamList>;
 
 export default function ProfileScreen() {
   const { t, lang, setLang } = useLang();
-  const { user, signOut } = useAuth();
+  const { user, signOut, activeMembership } = useAuth();
   const nav = useNavigation<Nav>();
 
   async function logout() {
@@ -37,7 +37,7 @@ export default function ProfileScreen() {
           <View style={styles.avatar}><Text style={styles.avatarText}>{user?.initials ?? 'JS'}</Text></View>
           <Text style={styles.name}>{user?.name ?? 'João Silva'}</Text>
           <Text style={styles.email}>{user?.email ?? 'joao@washon.com.br'}</Text>
-          <View style={styles.badge}><Text style={styles.badgeText}>{user?.role === 'Client' ? t('auth.client') : t('auth.specialist')}</Text></View>
+          <View style={styles.badge}><Text style={styles.badgeText}>{activeMembership ? t(`role.${activeMembership.role}`) : ''}</Text></View>
         </View>
 
         <Text style={styles.group}>{t('profile.language')}</Text>

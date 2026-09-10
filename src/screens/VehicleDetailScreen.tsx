@@ -18,11 +18,12 @@ const STAGES: VehicleStatus[] = ['scheduled', 'awaiting', 'in-service', 'ready',
 
 export default function VehicleDetailScreen({ route, navigation }: Props) {
   const { t } = useLang();
-  const { user } = useAuth();
+  const { user, activeMembership } = useAuth();
   const { order } = route.params;
   const [status, setStatus] = useState<VehicleStatus>(order.vehicle_status);
 
-  const isSpecialist = user?.role === 'Specialist';
+  const isSpecialist = activeMembership?.role === 'specialist'
+    || activeMembership?.role === 'unit_manager';
   const stageIndex = STAGES.indexOf(status);
 
   function renderActions() {

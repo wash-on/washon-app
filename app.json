@@ -1,38 +1,17 @@
 {
   "expo": {
-    "name": "WashOn",
-    "slug": "washon-app",
-    "version": "0.1.8",
     "orientation": "portrait",
-    "scheme": "washon",
     "userInterfaceStyle": "dark",
     "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0A0A0A"
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": false,
-      "bundleIdentifier": "com.washon.app",
-      "buildNumber": "0.1.8",
-      "infoPlist": {
-        "UIUserInterfaceStyle": "Dark",
-        "CFBundleDisplayName": "WashOn"
-      }
-    },
-    "android": {
-      "package": "com.washon.app",
-      "versionCode": 8,
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#0A0A0A"
-      }
-    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-font", "expo-localization"]
+    "plugins": [
+      "expo-font",
+      "expo-localization"
+    ]
   }
 }

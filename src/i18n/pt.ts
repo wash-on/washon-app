@@ -77,4 +77,74 @@ export const pt = {
   },
   nav: { home: 'Início', vehicles: 'Veículos', reports: 'Relatórios', profile: 'Perfil', schedule: 'Agendar' },
   toast: { langChanged: 'Idioma alterado', sessionEnded: 'Sessão encerrada', soon: 'Em breve' },
+    'bootstrap.eyebrow': 'Primeiro acesso',
+    'bootstrap.title': 'Criar o administrador da rede',
+    'bootstrap.body':
+      'Informe a senha mestra gerada na implantação. Ela cria o primeiro administrador da rede e é válida uma única vez.',
+    'bootstrap.field.fullName': 'Nome completo',
+    'bootstrap.field.masterPassword': 'Senha mestra',
+    'bootstrap.placeholder.fullName': 'Como você assina documentos',
+    'bootstrap.placeholder.masterPassword': 'Entregue pelo operador da implantação',
+    'bootstrap.hint.oneReveal':
+      'A senha mestra é exibida uma única vez ao operador. Não há segunda exibição.',
+    'bootstrap.action.claim': 'Criar administrador',
+    'bootstrap.footnote.expiry':
+      'A senha mestra expira 24 horas após a implantação se não for utilizada.',
+    'bootstrap.success.title': 'Administrador criado',
+    'bootstrap.success.body':
+      'Sua conta agora é administradora da rede. Você pode alterar sua senha a qualquer momento no perfil.',
+    'bootstrap.secondAdminPending':
+      'A rede ainda tem apenas um administrador. São exigidos dois administradores ativos antes da entrada em produção. Convide o segundo administrador — ele definirá a própria senha.',
+    'bootstrap.error.secretTooShort': 'Senha mestra inválida.',
+    'bootstrap.error.nameRequired': 'Informe seu nome completo.',
+    'bootstrap.denied.authz.denied.invalidSecret': 'Senha mestra incorreta.',
+    'bootstrap.denied.authz.denied.expired':
+      'A senha mestra expirou. Solicite uma nova ao operador da implantação.',
+    'bootstrap.denied.authz.denied.stateConflict':
+      'Esta senha mestra já foi utilizada. A rede já possui um administrador.',
+    'bootstrap.denied.authz.denied.rateLimited':
+      'Muitas tentativas. Tente novamente em 30 minutos.',
+    'bootstrap.denied.generic': 'Não foi possível concluir. Verifique os dados e tente novamente.',
+
+    // v1.6 §13.1 — required catalogue
+    'admin.mfa.override.warning':
+      'Não recomendado. Desativar a MFA reduz a proteção da conta deste usuário.',
+    'admin.mfa.override.confirm': 'Manter MFA desativada para este especialista?',
+    'admin.breakGlass.waived':
+      'Aprovação dupla dispensada. A operação será executada em 30 minutos.',
+    'admin.catalog.unconfirmed':
+      'Serviço sem banda de preço ou limite de desconto confirmados.',
+    'auth.reset.requested':
+      'Solicitação enviada. Aguarde a autorização do gerente da unidade.',
+    'auth.reset.authorized': 'Redefinição autorizada. O link é válido por 60 minutos.',
+    'auth.reset.denied': 'Solicitação não autorizada. Procure o gerente da sua unidade.',
+    'admin.reset.verifyIdentity':
+      'Confirme a identidade do solicitante pessoalmente antes de autorizar.',
+    'admin.policy.pendingAck':
+      'Alterações de permissões desta versão aguardam sua confirmação.',
+    'admin.policy.expansionStaged':
+      'Novas permissões só entram em vigor após a confirmação.',
+
+    // Access gate, admin landing, role and scope labels
+    'common.signOut': 'Sair',
+    'gate.wrongApp.title': 'Conta sem acesso a este aplicativo',
+    'gate.wrongApp.useClient': 'Esta conta é de cliente. Use o aplicativo WashOn.',
+    'gate.wrongApp.useStaff': 'Esta conta é da equipe. Use o aplicativo WashOn Pro.',
+    'gate.choose.title': 'Escolha o contexto',
+    'gate.choose.body': 'Sua conta tem mais de um perfil ativo. Selecione com qual deseja entrar agora.',
+    'admin.home.eyebrow': 'Administração da rede',
+    'admin.home.role': 'Perfil',
+    'admin.home.scope': 'Abrangência',
+    'admin.home.activeAdmins': 'Administradores ativos',
+    'role.client': 'Cliente',
+    'role.specialist': 'Especialista',
+    'role.unit_manager': 'Gerente de unidade',
+    'role.franchisee': 'Franqueado',
+    'role.network_admin': 'Administrador da rede',
+    'role.auditor': 'Auditor',
+    'scope.self': 'Pessoal',
+    'scope.account': 'Conta',
+    'scope.unit': 'Unidade',
+    'scope.unit_group': 'Grupo de unidades',
+    'scope.network': 'Rede inteira',
 };

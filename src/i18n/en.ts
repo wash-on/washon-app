@@ -77,4 +77,71 @@ export const en = {
   },
   nav: { home: 'Home', vehicles: 'Vehicles', reports: 'Reports', profile: 'Profile', schedule: 'Schedule' },
   toast: { langChanged: 'Language changed', sessionEnded: 'Session ended', soon: 'Coming soon' },
+    'bootstrap.eyebrow': 'First access',
+    'bootstrap.title': 'Create the network administrator',
+    'bootstrap.body':
+      'Enter the master password generated at deployment. It creates the first network administrator and works only once.',
+    'bootstrap.field.fullName': 'Full name',
+    'bootstrap.field.masterPassword': 'Master password',
+    'bootstrap.placeholder.fullName': 'As you sign documents',
+    'bootstrap.placeholder.masterPassword': 'Handed over by the deployment operator',
+    'bootstrap.hint.oneReveal':
+      'The master password is shown to the operator once. There is no second reveal.',
+    'bootstrap.action.claim': 'Create administrator',
+    'bootstrap.footnote.expiry':
+      'The master password expires 24 hours after deployment if unused.',
+    'bootstrap.success.title': 'Administrator created',
+    'bootstrap.success.body':
+      'Your account is now a network administrator. You can change your password at any time from your profile.',
+    'bootstrap.secondAdminPending':
+      'The network still has only one administrator. Two active administrators are required before going live. Invite the second — they will set their own password.',
+    'bootstrap.error.secretTooShort': 'Invalid master password.',
+    'bootstrap.error.nameRequired': 'Enter your full name.',
+    'bootstrap.denied.authz.denied.invalidSecret': 'Incorrect master password.',
+    'bootstrap.denied.authz.denied.expired':
+      'The master password has expired. Ask the deployment operator for a new one.',
+    'bootstrap.denied.authz.denied.stateConflict':
+      'This master password has already been used. The network already has an administrator.',
+    'bootstrap.denied.authz.denied.rateLimited':
+      'Too many attempts. Try again in 30 minutes.',
+    'bootstrap.denied.generic': 'Could not complete. Check the details and try again.',
+
+    'admin.mfa.override.warning':
+      "Not recommended. Disabling MFA reduces the protection of this user's account.",
+    'admin.mfa.override.confirm': 'Keep MFA disabled for this specialist?',
+    'admin.breakGlass.waived':
+      'Dual approval waived. The operation will run in 30 minutes.',
+    'admin.catalog.unconfirmed':
+      'Service has no confirmed price band or discount limit.',
+    'auth.reset.requested': "Request sent. Wait for your unit manager's authorization.",
+    'auth.reset.authorized': 'Reset authorized. The link is valid for 60 minutes.',
+    'auth.reset.denied': 'Request not authorized. Contact your unit manager.',
+    'admin.reset.verifyIdentity':
+      "Confirm the requester's identity in person before authorizing.",
+    'admin.policy.pendingAck':
+      'Permission changes in this release are awaiting your acknowledgement.',
+    'admin.policy.expansionStaged':
+      'New permissions take effect only after acknowledgement.',
+
+    'common.signOut': 'Sign out',
+    'gate.wrongApp.title': 'This account has no access to this app',
+    'gate.wrongApp.useClient': 'This is a customer account. Use the WashOn app.',
+    'gate.wrongApp.useStaff': 'This is a staff account. Use the WashOn Pro app.',
+    'gate.choose.title': 'Choose your context',
+    'gate.choose.body': 'Your account has more than one active profile. Select which one to use now.',
+    'admin.home.eyebrow': 'Network administration',
+    'admin.home.role': 'Role',
+    'admin.home.scope': 'Scope',
+    'admin.home.activeAdmins': 'Active administrators',
+    'role.client': 'Customer',
+    'role.specialist': 'Specialist',
+    'role.unit_manager': 'Unit manager',
+    'role.franchisee': 'Franchisee',
+    'role.network_admin': 'Network administrator',
+    'role.auditor': 'Auditor',
+    'scope.self': 'Personal',
+    'scope.account': 'Account',
+    'scope.unit': 'Unit',
+    'scope.unit_group': 'Unit group',
+    'scope.network': 'Whole network',
 };

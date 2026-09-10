@@ -10,11 +10,28 @@ import { Logo, Button } from '@/components/ui';
 import { Field } from '@/components/cards';
 import { useLang } from '@/context/LanguageContext';
 import { useAuth, validatePassword } from '@/context/AuthContext';
+import { appVariant } from '@/lib/variant';
 import type { RootStackParamList } from '@/navigation/types';
 import type { Lang } from '@/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Auth'>;
 
+/**
+ * WHAT CHANGED FROM 0.1.8, and why it matters more than it looks:
+ *
+ * The login form had a "Client / Specialist" chip row. Whatever the user
+ * tapped was passed into signIn() and written to their session — the login
+ * screen asked people what authority they would like to have. That is Gap A,
+ * and it is why nothing else in this release can be trusted until it is gone.
+ *
+ * There is now no role control of any kind. Sign in with an e-mail and a
+ * password; the server decides what you are from your memberships, and
+ * RootNavigator renders whatever that turns out to be. There is also no
+ * navigation.reset() call: the stack swaps by itself when auth state changes.
+ *
+ * Sign-up is unchanged in shape but produces a customer and only a customer
+ * (Rule A1). Staff never self-register — they arrive by invitation.
+ */
 export default function AuthScreen({ route, navigation }: Props) {
   const { t, lang, setLang } = useLang();
   const { signIn, signUp } = useAuth();
@@ -26,7 +43,6 @@ export default function AuthScreen({ route, navigation }: Props) {
   // login fields
   const [contact, setContact] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'Client' | 'Specialist'>('Specialist');
 
   // signup fields
   const [name, setName] = useState('');
@@ -39,6 +55,9 @@ export default function AuthScreen({ route, navigation }: Props) {
   const [pwd, setPwd] = useState('');
   const [pwd2, setPwd2] = useState('');
 
+  // The staff build never offers self-registration (Rule A1).
+  const allowSignup = appVariant === 'client';
+
   async function handleLogin() {
     if (!validatePassword(password)) {
       setError(t('auth.errPwd'));
@@ -46,16 +65,10 @@ export default function AuthScreen({ route, navigation }: Props) {
     }
     setError('');
     setLoading(true);
-    const res = await signIn(contact, password, role);
+    const res = await signIn(contact, password);
     setLoading(false);
-    if (res.error) {
-      setError(res.error);
-      return;
-    }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: role === 'Client' ? 'ClientTabs' : 'SpecialistTabs' }],
-    });
+    if (res.error) setError(res.error);
+    // On success: no navigation call. AuthContext updates, RootNavigator swaps.
   }
 
   async function handleSignup() {
@@ -77,31 +90,33 @@ export default function AuthScreen({ route, navigation }: Props) {
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <View style={styles.header}>
           <View style={styles.headerTop}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity onPress={() => navigation.canGoBack() && navigation.goBack()}>
               <Ionicons name="arrow-back" size={22} color={colors.text2} />
             </TouchableOpacity>
             <Logo size="sm" />
             <View style={{ width: 22 }} />
           </View>
-          <View style={styles.tabs}>
-            {(['login', 'signup'] as const).map((m) => (
-              <TouchableOpacity
-                key={m}
-                style={[styles.tab, mode === m && styles.tabActive]}
-                onPress={() => { setMode(m); setError(''); }}
-              >
-                <Text style={[styles.tabText, mode === m && { color: '#fff' }]}>
-                  {m === 'login' ? t('common.enter') : t('common.signup')}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          {allowSignup && (
+            <View style={styles.tabs}>
+              {(['login', 'signup'] as const).map((m) => (
+                <TouchableOpacity
+                  key={m}
+                  style={[styles.tab, mode === m && styles.tabActive]}
+                  onPress={() => { setMode(m); setError(''); }}
+                >
+                  <Text style={[styles.tabText, mode === m && { color: '#fff' }]}>
+                    {m === 'login' ? t('common.enter') : t('common.signup')}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
         </View>
 
         <ScrollView contentContainerStyle={styles.body} keyboardShouldPersistTaps="handled">
           {error ? <Text style={styles.error}>{error}</Text> : null}
 
-          {mode === 'login' ? (
+          {mode === 'login' || !allowSignup ? (
             <>
               <ContactToggle value={contactMode} onChange={setContactMode} t={t} />
               <Field
@@ -115,20 +130,6 @@ export default function AuthScreen({ route, navigation }: Props) {
                 label={t('auth.password')} value={password} onChangeText={setPassword}
                 placeholder={t('auth.pwdPlaceholder')} secureTextEntry hint={t('auth.pwdHint')}
               />
-              <Text style={styles.label}>{t('auth.role')}</Text>
-              <View style={styles.roleRow}>
-                {(['Client', 'Specialist'] as const).map((r) => (
-                  <TouchableOpacity
-                    key={r}
-                    style={[styles.roleChip, role === r && styles.roleChipActive]}
-                    onPress={() => setRole(r)}
-                  >
-                    <Text style={[styles.roleText, role === r && { color: '#fff' }]}>
-                      {r === 'Client' ? t('auth.client') : t('auth.specialist')}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
               <Button label={t('common.enter')} onPress={handleLogin} loading={loading} style={{ marginTop: 6 }} />
             </>
           ) : (
@@ -159,14 +160,14 @@ export default function AuthScreen({ route, navigation }: Props) {
                 </View>
               </View>
               <Text style={styles.label}>{t('auth.prefLang')}</Text>
-              <View style={styles.roleRow}>
+              <View style={styles.chipRow}>
                 {(['pt', 'en', 'es'] as Lang[]).map((l) => (
                   <TouchableOpacity
                     key={l}
-                    style={[styles.roleChip, suLang === l && styles.roleChipActive]}
+                    style={[styles.chip, suLang === l && styles.chipActive]}
                     onPress={() => setSuLang(l)}
                   >
-                    <Text style={[styles.roleText, suLang === l && { color: '#fff' }]}>{l.toUpperCase()}</Text>
+                    <Text style={[styles.chipText, suLang === l && { color: '#fff' }]}>{l.toUpperCase()}</Text>
                   </TouchableOpacity>
                 ))}
               </View>
@@ -222,10 +223,10 @@ const styles = StyleSheet.create({
   contactTabActive: { borderColor: colors.primary, backgroundColor: colors.primaryLight },
   contactText: { fontSize: 13, color: colors.text2, fontFamily: fonts.bodyMed },
   label: { fontSize: 11, color: colors.text2, marginBottom: 6, fontFamily: fonts.bodyMed, textTransform: 'uppercase', letterSpacing: 0.5 },
-  roleRow: { flexDirection: 'row', gap: 8, marginBottom: 6 },
-  roleChip: { flex: 1, paddingVertical: 11, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface2, alignItems: 'center' },
-  roleChipActive: { borderColor: colors.primary, backgroundColor: colors.primaryLight },
-  roleText: { fontSize: 13, color: colors.text2, fontFamily: fonts.bodyMed },
+  chipRow: { flexDirection: 'row', gap: 8, marginBottom: 6 },
+  chip: { flex: 1, paddingVertical: 11, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface2, alignItems: 'center' },
+  chipActive: { borderColor: colors.primary, backgroundColor: colors.primaryLight },
+  chipText: { fontSize: 13, color: colors.text2, fontFamily: fonts.bodyMed },
   row: { flexDirection: 'row', gap: 10 },
   langRow: { flexDirection: 'row', justifyContent: 'center', gap: 10, marginTop: 18 },
   pill: { backgroundColor: colors.surface2, borderWidth: 1, borderColor: colors.border, borderRadius: 20, paddingVertical: 5, paddingHorizontal: 16 },

@@ -1,0 +1,60 @@
+{
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "base": {
+      "node": "22.16.0",
+      "ios": { "resourceClass": "m-medium" },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://YOUR-PROJECT.supabase.co"
+      }
+    },
+
+    "dev-client": {
+      "extends": "base",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": { "APP_VARIANT": "client" }
+    },
+    "dev-staff": {
+      "extends": "base",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": { "APP_VARIANT": "staff" }
+    },
+
+    "homolog-client": {
+      "extends": "base",
+      "distribution": "store",
+      "channel": "homolog",
+      "env": { "APP_VARIANT": "client" },
+      "ios": { "buildConfiguration": "Release" }
+    },
+    "homolog-staff": {
+      "extends": "base",
+      "distribution": "store",
+      "channel": "homolog",
+      "env": { "APP_VARIANT": "staff" },
+      "ios": { "buildConfiguration": "Release" }
+    }
+  },
+
+  "submit": {
+    "homolog-client": {
+      "ios": {
+        "appleId": "REPLACE_WITH_APPLE_ID_EMAIL",
+        "ascAppId": "REPLACE_WITH_APP_STORE_CONNECT_APP_ID",
+        "appleTeamId": "REPLACE_WITH_TEAM_ID"
+      }
+    },
+    "homolog-staff": {
+      "ios": {
+        "appleId": "REPLACE_WITH_APPLE_ID_EMAIL",
+        "ascAppId": "REPLACE_WITH_SECOND_APP_STORE_CONNECT_APP_ID",
+        "appleTeamId": "REPLACE_WITH_TEAM_ID"
+      }
+    }
+  }
+}

@@ -77,4 +77,72 @@ export const es = {
   },
   nav: { home: 'Inicio', vehicles: 'Vehículos', reports: 'Reportes', profile: 'Perfil', schedule: 'Agendar' },
   toast: { langChanged: 'Idioma cambiado', sessionEnded: 'Sesión finalizada', soon: 'Próximamente' },
+    'bootstrap.eyebrow': 'Primer acceso',
+    'bootstrap.title': 'Crear el administrador de la red',
+    'bootstrap.body':
+      'Introduzca la contraseña maestra generada en el despliegue. Crea el primer administrador de la red y solo sirve una vez.',
+    'bootstrap.field.fullName': 'Nombre completo',
+    'bootstrap.field.masterPassword': 'Contraseña maestra',
+    'bootstrap.placeholder.fullName': 'Como firma documentos',
+    'bootstrap.placeholder.masterPassword': 'Entregada por el operador del despliegue',
+    'bootstrap.hint.oneReveal':
+      'La contraseña maestra se muestra al operador una sola vez. No hay una segunda revelación.',
+    'bootstrap.action.claim': 'Crear administrador',
+    'bootstrap.footnote.expiry':
+      'La contraseña maestra caduca 24 horas después del despliegue si no se utiliza.',
+    'bootstrap.success.title': 'Administrador creado',
+    'bootstrap.success.body':
+      'Su cuenta ya es administradora de la red. Puede cambiar su contraseña cuando quiera desde su perfil.',
+    'bootstrap.secondAdminPending':
+      'La red todavía tiene un solo administrador. Se exigen dos administradores activos antes de la puesta en producción. Invite al segundo — él definirá su propia contraseña.',
+    'bootstrap.error.secretTooShort': 'Contraseña maestra no válida.',
+    'bootstrap.error.nameRequired': 'Introduzca su nombre completo.',
+    'bootstrap.denied.authz.denied.invalidSecret': 'Contraseña maestra incorrecta.',
+    'bootstrap.denied.authz.denied.expired':
+      'La contraseña maestra ha caducado. Solicite una nueva al operador del despliegue.',
+    'bootstrap.denied.authz.denied.stateConflict':
+      'Esta contraseña maestra ya se ha utilizado. La red ya tiene un administrador.',
+    'bootstrap.denied.authz.denied.rateLimited':
+      'Demasiados intentos. Inténtelo de nuevo en 30 minutos.',
+    'bootstrap.denied.generic': 'No se pudo completar. Revise los datos e inténtelo de nuevo.',
+
+    'admin.mfa.override.warning':
+      'No recomendado. Desactivar la MFA reduce la protección de la cuenta de este usuario.',
+    'admin.mfa.override.confirm': '¿Mantener la MFA desactivada para este especialista?',
+    'admin.breakGlass.waived':
+      'Aprobación doble omitida. La operación se ejecutará en 30 minutos.',
+    'admin.catalog.unconfirmed':
+      'Servicio sin banda de precio o límite de descuento confirmados.',
+    'auth.reset.requested':
+      'Solicitud enviada. Espere la autorización del gerente de la unidad.',
+    'auth.reset.authorized': 'Restablecimiento autorizado. El enlace es válido por 60 minutos.',
+    'auth.reset.denied': 'Solicitud no autorizada. Contacte al gerente de su unidad.',
+    'admin.reset.verifyIdentity':
+      'Confirme la identidad del solicitante en persona antes de autorizar.',
+    'admin.policy.pendingAck':
+      'Los cambios de permisos de esta versión esperan su confirmación.',
+    'admin.policy.expansionStaged':
+      'Los nuevos permisos solo entran en vigor tras la confirmación.',
+
+    'common.signOut': 'Salir',
+    'gate.wrongApp.title': 'Esta cuenta no tiene acceso a esta aplicación',
+    'gate.wrongApp.useClient': 'Es una cuenta de cliente. Use la aplicación WashOn.',
+    'gate.wrongApp.useStaff': 'Es una cuenta del equipo. Use la aplicación WashOn Pro.',
+    'gate.choose.title': 'Elija el contexto',
+    'gate.choose.body': 'Su cuenta tiene más de un perfil activo. Seleccione con cuál desea entrar ahora.',
+    'admin.home.eyebrow': 'Administración de la red',
+    'admin.home.role': 'Perfil',
+    'admin.home.scope': 'Alcance',
+    'admin.home.activeAdmins': 'Administradores activos',
+    'role.client': 'Cliente',
+    'role.specialist': 'Especialista',
+    'role.unit_manager': 'Gerente de unidad',
+    'role.franchisee': 'Franquiciado',
+    'role.network_admin': 'Administrador de la red',
+    'role.auditor': 'Auditor',
+    'scope.self': 'Personal',
+    'scope.account': 'Cuenta',
+    'scope.unit': 'Unidad',
+    'scope.unit_group': 'Grupo de unidades',
+    'scope.network': 'Toda la red',
 };
